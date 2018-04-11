@@ -4,7 +4,7 @@ class Property < ApplicationRecord
 
   def self.available 
     select( 'properties.id, price, beds, baths, sq_ft,
-            ad.city, ad.state, ad.street, a.first_name, a.last_name, a.email, a.id AS agent_id')
+            ad.city, ad.street, a.first_name, a.last_name, a.email, a.id AS agent_id')
     .joins( 'INNER JOIN agents a ON a.id = properties.agent_id
              INNER JOIN addresses ad on ad.property_id = properties.id') 
     .where('properties.sold<> TRUE')
